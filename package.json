@@ -1,0 +1,23 @@
+{
+  "name": "webcrawlerjs",
+  "version": "1.0.0",
+  "description": "Web Crawler ",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickhoggett/Web-Crawler-JS.git"
+  },
+  "author": "N Hoggett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nickhoggett/Web-Crawler-JS/issues"
+  },
+  "homepage": "https://github.com/nickhoggett/Web-Crawler-JS#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
