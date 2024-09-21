@@ -38,15 +38,15 @@ test('getURLsFromHTML absolute', () => {
     const inputHTMLBody = `
     <html>
         <body>
-            <a href="https://BLOG.boot.dev/">
+            <a href="https://BLOG.boot.dev/path">
                 Boot.dev blog
             </a>
         </body>
     </html>
     `
-    const inputBaseURL = 'https://blog.boot.dev/'
+    const inputBaseURL = 'https://blog.boot.dev/path'
     const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL)
-    const expected = ["https://blog.boot.dev/"]
+    const expected = ["https://blog.boot.dev/path"]
     expect(actual).toEqual(expected)
 })
 
@@ -54,15 +54,50 @@ test('getURLsFromHTML relative', () => {
     const inputHTMLBody = `
     <html>
         <body>
-            <a href="https://BLOG.boot.dev/">
+            <a href="/path/">
                 Boot.dev blog
             </a>
         </body>
     </html>
     `
-    const inputBaseURL = 'https://blog.boot.dev/'
+    const inputBaseURL = 'https://blog.boot.dev'
     const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL)
-    const expected = ["https://blog.boot.dev/"]
+    const expected = ["https://blog.boot.dev/path/"]
     expect(actual).toEqual(expected)
 })
 
+
+test('getURLsFromHTML both', () => {
+    const inputHTMLBody = `
+    <html>
+        <body>
+            <a href="https://blog.boot.dev/path1/">
+                Boot.dev blog path one
+            </a>
+            <a href="/path2/">
+                Boot.dev blog path two
+            </a>
+        </body>
+    </html>
+    `
+    const inputBaseURL = 'https://blog.boot.dev'
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL)
+    const expected = ["https://blog.boot.dev/path1/", "https://blog.boot.dev/path2/"]
+    expect(actual).toEqual(expected)
+})
+
+test('getURLsFromHTML invalid', () => {
+    const inputHTMLBody = `
+    <html>
+        <body>
+            <a href="invalid">
+                invalid URL
+            </a>
+        </body>
+    </html>
+    `
+    const inputBaseURL = 'https://blog.boot.dev'
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL)
+    const expected = []
+    expect(actual).toEqual(expected)
+})
