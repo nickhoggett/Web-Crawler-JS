@@ -1,6 +1,11 @@
 const { crawlPage } = require('./crawl.js')
 
+
+//in CLI run "npm start <web site address>"
+
 function main() {
+    //catching user errors before crawlpage runs
+
     if (process.argv.length < 3) {
         console.log("no website provided")
         process.exit(1)
